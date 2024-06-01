@@ -10,7 +10,11 @@ on:
 
 jobs:
   trivy-scan:
-    uses: dougmendes/trivy-pr-decoration/.github/workflows/trivy-scan.yml@main
-    with:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-     
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trivy Scan
+        uses: ./.github/actions/trivy-scan
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          severity: 'HIGH,CRITICAL'
+          ignore-unfixed: 'true'
