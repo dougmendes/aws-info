@@ -11,3 +11,6 @@ on:
 jobs:
   trivy-scan:
     uses: dougmendes/trivy-pr-decoration/.github/workflows/trivy-scan.yml@main
+    with:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     
