@@ -1,0 +1,23 @@
+name: CI Pipeline with Trivy Scan
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  trivy-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Trivy Scan
+        uses: ./.github/actions/trivy-scan
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          severity: 'HIGH,CRITICAL'
+          ignore-unfixed: 'true'
