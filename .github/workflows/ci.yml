@@ -12,6 +12,9 @@ jobs:
   trivy-scan:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Trivy Scan
         uses: ./.github/actions/trivy-scan
         with:
