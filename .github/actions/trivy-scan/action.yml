@@ -24,7 +24,7 @@ runs:
     - name: Run Trivy scan on repository
       id: trivy
       run: |
-        docker run --rm -v $(pwd):/project aquasecurity/trivy:latest fs --severity ${{ inputs.severity }} --ignore-unfixed=${{ inputs.ignore-unfixed }} /project > trivy-output.txt || true
+        docker run --rm -v $(pwd):/project aquasec/trivy:latest fs --severity ${{ inputs.severity }} --ignore-unfixed=${{ inputs.ignore-unfixed }} /project > trivy-output.txt || true
       shell: bash
 
     - name: Install jq
