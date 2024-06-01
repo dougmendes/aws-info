@@ -21,15 +21,10 @@ runs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
-    - name: Build Docker image
-      run: docker build -t myapp:latest .
-      shell: bash
-
-    - name: Run Trivy scan on local image
+    - name: Run Trivy scan on repository
       id: trivy
       run: |
-        docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
-          aquasecurity/trivy:latest image --severity ${{ inputs.severity }} --ignore-unfixed=${{ inputs.ignore-unfixed }} myapp:latest > trivy-output.txt || true
+        docker run --rm -v $(pwd):/project aquasecurity/trivy:latest fs --severity ${{ inputs.severity }} --ignore-unfixed=${{ inputs.ignore-unfixed }} /project > trivy-output.txt || true
       shell: bash
 
     - name: Install jq
