@@ -11,7 +11,3 @@ on:
 jobs:
   trivy-scan:
     uses: dougmendes/trivy-pr-decoration/.github/workflows/trivy-scan.yml@main
-    with:
-      github-token: ${{ secrets.GITHUB_TOKEN }}
-      severity: HIGH,CRITICAL
-      ignore-unfixed: true
